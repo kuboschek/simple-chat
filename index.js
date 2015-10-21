@@ -4,6 +4,8 @@ var app = express()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
+var uuid = require('node-uuid')
+
 app.use(express.static('static'))
 
 var messages = []
@@ -21,7 +23,12 @@ io.on('connection', function (socket) {
 
   socket.on('chat message', function (msg) {
     msg.time = Date.now()
-    console.log('message: [' + msg.user + '] ' + msg.text)
+
+    if (!msg.id) {
+      msg.id = uuid.v4()
+    }
+
+    console.log('[' + msg.user + '] ' + msg.text)
     messages.push(msg)
 
     io.emit('chat message', msg)
