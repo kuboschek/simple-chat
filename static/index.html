@@ -14,6 +14,7 @@
     </style>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
   </head>
   <body>
     <ul id="messages"></ul>
@@ -22,10 +23,29 @@
     </form>
 
     <script type="text/javascript">
-      var socket = io();
+      var socket = io()
+
+      var renderedIds = [] // A list of UUIDs which have been rendered
+
+      function updateTime() {
+        var dateLis = $('#messages li span')
+        console.log(dateLis)
+      }
 
       function renderMsg(msg) {
-        console.log(msg)
+        if(!(msg.id in renderedIds)) {
+          var dateStr = new Date(msg.time)
+
+          $('#messages').append(
+            $('<li>')
+              .attr('id', msg.id)
+              .text('[' + msg.user + "] " + msg.text)
+          )
+
+          renderedIds.push(msg.id)
+        } else {
+          console.log('Duplicate message', msg)
+        }
       }
 
       $('form').submit(function(){
