@@ -1,8 +1,4 @@
-var $ = require('jquery')
-require('bootstrap')
-
-var socket = require('socket.io')
-var moment = require('moment')
+var socket = io()
 
 var renderedIds = [] // A list of UUIDs which have been rendered
 
