@@ -2,25 +2,14 @@
 <html>
   <head>
     <title>Simple Chat</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
 
-      #content { height: 100%; width: 75%; max-width: 480px; margin: auto; }
+    <link rel="stylesheet" href="css/main.css">
 
-      form { position: relative; bottom: 0; }
-      form input { border: 0; padding: 10px; width: 90%; }
-      form button { position: absolute; width: 10%;  border: none; height: 100%; }
-
-      #messages { list-style-type: none; margin: 0; padding: 0; overflow: hidden; }
-      #messages li { padding: 5px 10px; margin: 0.2em 0 0 0.2em; }
-      #messages li:nth-child(odd) { background: #eee; }
-      #messages li span.time { float: right; color: lightgrey; }
-      #messages li b::after { content: ': '; }
-    </style>
+    <!--
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    -->
   </head>
   <body>
     <div id="content">
@@ -29,7 +18,7 @@
         <input id="m" autocomplete="off" /><button>Send</button>
       </form>
     </div>
-
+    <!--
     <script type="text/javascript">
       var socket = io()
 
@@ -91,5 +80,6 @@
         renderMsg(msg)
       })
     </script>
+    -->
   </body>
 </html>

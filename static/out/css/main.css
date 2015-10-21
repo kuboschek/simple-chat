@@ -1,0 +1,14 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+
+#content { height: 100%; width: 75%; max-width: 480px; margin: auto; }
+
+form { position: relative; bottom: 0; }
+form input { border: 0; padding: 10px; width: 90%; }
+form button { position: absolute; width: 10%;  border: none; height: 100%; }
+
+#messages { list-style-type: none; margin: 0; padding: 0; overflow: hidden; }
+#messages li { padding: 5px 10px; margin: 0.2em 0 0 0.2em; }
+#messages li:nth-child(odd) { background: #eee; }
+#messages li span.time { float: right; color: lightgrey; }
+#messages li b::after { content: ': '; }
