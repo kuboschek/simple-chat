@@ -9,6 +9,7 @@ var uuid = require('node-uuid')
 app.use(express.static('static'))
 
 var messages = []
+var users = []
 
 io.on('connection', function (socket) {
   console.log('New connection, resending messages')
@@ -16,6 +17,9 @@ io.on('connection', function (socket) {
   messages.forEach(function (e) {
     socket.emit('chat message', e)
   })
+
+  var myuser = {'name': undefined, 'socket': socket}
+  users.push(myuser)
 
   socket.on('disconnect', function () {
     console.log('User disconnected')
@@ -28,10 +32,16 @@ io.on('connection', function (socket) {
       msg.id = uuid.v4()
     }
 
+    console.log('name: ' + myuser.name)
     console.log('[' + msg.user + '] ' + msg.text)
     messages.push(msg)
 
     io.emit('chat message', msg)
+  })
+
+  socket.on('set name', function (msg) {
+    myuser.name = msg
+    console.log('Set username to ' + msg)
   })
 })
 
