@@ -14,3 +14,7 @@ form button { position: absolute; width: 10%;  border: none; height: 100%; }
 #messages li:nth-child(odd) { background: #eee; }
 #messages li span.time { float: right; color: lightgrey; }
 #messages li b::after { content: ' '; }
+
+#username::before {
+  content: 'Chatting as ';
+}

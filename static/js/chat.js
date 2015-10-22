@@ -56,6 +56,14 @@ $('#uname').change(function () {
   socket.emit('set name', $('#uname').val())
 })
 
+$('#username').click(function () {
+  var newName = prompt("Enter your new name: ", $('#username').text())
+
+  if (newName) {
+    socket.emit('set name', newName)
+    $('#username').text(newName)
+  }
+})
 
 socket.on('chat message', function (msg) {
   renderMsg(msg)
