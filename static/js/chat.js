@@ -45,13 +45,22 @@ function renderMsg (msg) {
 }
 
 $('form').submit(function () {
-  var msg = {user: 'test', text: $('#m').val()}
+  var msg = {text: $('#m').val()}
 
   socket.emit('chat message', msg)
   $('#m').val('')
   return false
 })
 
+$('#uname').change(function () {
+  socket.emit('set name', $('#uname').val())
+})
+
+
 socket.on('chat message', function (msg) {
   renderMsg(msg)
+})
+
+socket.on('user list', function(list){
+  console.log(list)
 })

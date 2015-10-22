@@ -12,20 +12,30 @@ var messages = []
 var users = []
 
 io.on('connection', function (socket) {
-  console.log('New connection, resending messages')
+  // console.log('New connection, resending messages')
 
+  // Resend all old messages
   messages.forEach(function (e) {
     socket.emit('chat message', e)
   })
 
-  var myuser = {'name': undefined, 'socket': socket}
+  var myuser = {'name': undefined, 'socket': socket.id}
   users.push(myuser)
 
   socket.on('disconnect', function () {
-    console.log('User disconnected')
+    users = users.filter(function (e) {
+      return e.socket !== socket.id
+    })
+
+    sendUsers()
   })
 
   socket.on('chat message', function (msg) {
+    msg.user = getUname(socket)
+
+    if (!msg.user) return
+    if (!msg.text) return
+
     msg.time = Date.now()
 
     if (!msg.id) {
@@ -41,8 +51,20 @@ io.on('connection', function (socket) {
 
   socket.on('set name', function (msg) {
     myuser.name = msg
-    console.log('Set username to ' + msg)
+    sendUsers()
   })
+
+  function sendUsers () {
+    io.emit('user list', users.map(function (e) {
+      return e.name
+    }))
+  }
+
+  function getUname (socket) {
+    return (users.filter(function (e) {
+      return e.socket === socket.id
+    })[0].name)
+  }
 })
 
 http.listen(3000, function () {
