@@ -1,6 +1,7 @@
 var socket = io()
 
 var renderedIds = [] // A list of UUIDs which have been rendered
+var userName = undefined
 
 function updateTime () {
   var dateLis = $('#messages li span.time')
@@ -44,6 +45,17 @@ function renderMsg (msg) {
   }
 }
 
+function setName(name) {
+  socket.emit('set name', name)
+  $('#username').text('Chatting as ' + name)
+  username = name
+  Cookies.set('chatname', name, { expires: 7})
+}
+
+function getName() {
+  return username
+}
+
 $('form').submit(function () {
   var msg = {text: $('#m').val()}
 
@@ -57,11 +69,18 @@ $('#uname').change(function () {
 })
 
 $('#username').click(function () {
-  var newName = prompt("Enter your new name: ", $('#username').text())
+  var newName = prompt("Enter your new name: ", getName())
 
   if (newName) {
-    socket.emit('set name', newName)
-    $('#username').text(newName)
+    setName(newName)
+  }
+})
+
+$(function() {
+  var name = Cookies.get('chatname')
+
+  if(name) {
+    setName(name)
   }
 })
 
