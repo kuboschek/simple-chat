@@ -4,7 +4,7 @@ var app = express()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
-var uuid = require('node-uuid')
+var uuid = require('uuid')
 
 app.use(express.static('static'))
 
