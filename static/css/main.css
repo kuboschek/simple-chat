@@ -18,6 +18,8 @@ form button { position: absolute; width: 10%;  border: none; height: 100%; }
   margin-top: 140px;
 }
 
+/*
 #username::before {
   content: 'Chatting as ';
 }
+*/
