@@ -17,23 +17,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   </head>
   <body>
-    <div class="container" id="content">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Simple Chat</a>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a id="username" href="#">Test User</a></li>
-          </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Simple Chat</a>
         </div>
-      </nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="username" href="#">Test User</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container" id="content">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <ul id="messages"></ul>
-          <form action="">
-            <input id="m" autocomplete="off" />
-            <button>Send</button>
+          <form action="" style="display: flex">
+            <input id="m" style="flex-grow:5" autocomplete="off" />
+            <button style="flex-grow:1">Send</button>
           </form>
         </dvi>
       </div>
